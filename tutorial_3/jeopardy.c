@@ -35,11 +35,20 @@ int main(int argc, char *argv[])
     char buffer[BUFFER_LEN] = { 0 };
 
     // Display the game introduction and initialize the questions
-    initialize_game();
+//    initialize_game();
 
     // Prompt for players names
     
-    // initialize each of the players in the array
+    for (int count = 1; count <= NUM_PLAYERS; count++) {
+        char name[256];
+        printf("Please enter the name for player %i:\n", count);
+        scanf("%s", name);
+        player p;
+        strcpy(p.name, name);
+        p.score = 0;
+        players[count] = p;
+        printf("Successfully stored %s as player %i\n\n", name, count);
+    }
 
     // Perform an infinite loop getting command input from users until game ends
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
@@ -52,3 +61,4 @@ int main(int argc, char *argv[])
     }
     return EXIT_SUCCESS;
 }
+
