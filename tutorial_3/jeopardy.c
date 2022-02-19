@@ -15,7 +15,7 @@
 
 // Put macros or constants here using #define
 #define BUFFER_LEN 256
-#define NUM_PLAYERS 4
+#define NUM_PLAYERS 1
 
 // Put global environment variables here
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     char buffer[BUFFER_LEN] = { 0 };
 
     // Display the game introduction and initialize the questions
-//    initialize_game();
+    initialize_game();
 
     // Prompt for players names
     
@@ -53,6 +53,10 @@ int main(int argc, char *argv[])
     // Perform an infinite loop getting command input from users until game ends
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
     {
+        char token[4][BUFFER_LEN] = {{0}};
+
+        initialize_game();
+        display_categories();
         // Call functions from the questions and players source files
 
         // Execute the game until all questions are answered
