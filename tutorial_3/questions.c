@@ -156,6 +156,14 @@ void display_question(char *category, int value)
 // Returns true if the answer is correct for the question for that category and dollar value
 bool valid_answer(char *category, int value, char *answer)
 {
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (strcmp(questions[i].category, category) == 0) {
+            if (questions[i].value == value)
+                if (strcmp(questions[i].answer, answer) == 0) {
+                    return true;;
+                }
+        }
+    }
 	return false;
 }
 
