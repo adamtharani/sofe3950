@@ -143,17 +143,14 @@ void display_categories(void)
 // Displays the question for the category and dollar value
 void display_question(char *category, int value)
 {
-    int questionNumber=0;
     printf("\nYou choose %s for $%d \n", category, value);
     
     for (int i=0; i<12; i++){
         //If the value of category and value match return the question number
         if (strcmp (questions[i].category, category) == 0 && (questions[i].value == value)){
-            questionNumber = i;
-            //printf("%d", questionNumber);
+            printf("Question: %s\n\n", questions[i].question);
         }
     }
-    printf("Question: %s\n\n", questions[questionNumber].question);
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
@@ -162,10 +159,15 @@ bool valid_answer(char *category, int value, char *answer)
 	return false;
 }
 
-
 // Returns true if the question has already been answered
 bool already_answered(char *category, int value)
 {
-    // lookup the question and see if it's already been marked as answered
+    //Go through each category
+    for (int i=0; i<12; i++){
+        //If the category and value matches, return true
+        if (strcmp(questions[i].category, category) == 0 && (questions[i].value = value) && (questions[i].answered == true) ){
+            return true;
+        }
+    }
     return false;
 }

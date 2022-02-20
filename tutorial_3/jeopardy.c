@@ -68,11 +68,21 @@ int main() //(int argc, char *argv[])
         scanf("%d", &value);
         */
 
+     
         display_question(category, value);
         update_score(players, NUM_PLAYERS, "Abdul", value);
+        questions[7].answered = true;
+
+        bool ans;
+        ans = already_answered(category, value);
+
+        //if ()
+            printf("%d\n", ans);
 
         printf("name: %s\n", players[0].name);
         printf("score: %d\n", players[0].score);
+
+
 
        
 
@@ -82,7 +92,7 @@ int main() //(int argc, char *argv[])
 
 
         // Display the final results and exit
-        free(category);
+        //free(category);
     }
     return EXIT_SUCCESS;
 }
