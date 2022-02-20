@@ -54,14 +54,24 @@ int main(int argc, char *argv[])
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
     {
         char token[4][BUFFER_LEN] = {{0}};
-
-        initialize_game();
+        char categorySelection[BUFFER_LEN];
+        int valueSelection;
+        char answer[BUFFER_LEN];
         display_categories();
-        // Call functions from the questions and players source files
-
-        // Execute the game until all questions are answered
-
-        // Display the final results and exit
+        printf("Please pick a category\n");
+        scanf("%s", categorySelection);
+        printf("Please pick a value\n");
+        scanf("%i", &valueSelection);
+        display_question(categorySelection, valueSelection);
+        printf("Please enter your answer:\n");
+        scanf("%[^\n]", answer);
+        if (valid_answer(categorySelection, valueSelection, answer)) {
+            printf("You answered right");
+        }
+        else {
+            printf("%s", answer);
+        }
+        
     }
     return EXIT_SUCCESS;
 }

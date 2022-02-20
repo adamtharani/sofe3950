@@ -118,9 +118,9 @@ void initialize_game(void)
 // Displays each of the remaining categories and question dollar values that have not been answered
 void display_categories(void)
 {
-    char tempQuestions[12][20];
+    char tempQuestions[NUM_QUESTIONS][20];
     
-    for (int i =0; i<12; i++){
+    for (int i = 0; i < NUM_QUESTIONS; i++){
         if (questions[i].answered == false){
             snprintf(tempQuestions[i], 20, "%d", questions[i].value);
         }
@@ -142,12 +142,26 @@ void display_categories(void)
 // Displays the question for the category and dollar value
 void display_question(char *category, int value)
 {
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (strcmp(questions[i].category, category) == 0) {
+            if (questions[i].value == value)
+                printf("%s\n", questions[i].question);
+        }
+    }
 
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
 bool valid_answer(char *category, int value, char *answer)
 {
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (strcmp(questions[i].category, category) == 0) {
+            if (questions[i].value == value)
+                if (strcmp(questions[i].answer, answer) == 0) {
+                    return true;;
+                }
+        }
+    }
     // Look into string comparison functions
     return false;
 }
@@ -155,6 +169,14 @@ bool valid_answer(char *category, int value, char *answer)
 // Returns true if the question has already been answered
 bool already_answered(char *category, int value)
 {
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (strcmp(questions[i].category, category) == 0) {
+            if (questions[i].value == value)
+                if (questions[i].answered == true) {
+                    return true;
+                }
+        }
+    }
     // lookup the question and see if it's already been marked as answered
     return false;
 }
