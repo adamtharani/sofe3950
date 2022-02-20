@@ -54,7 +54,7 @@ void initialize_game(void)
     q5.value = 100;
     strcpy(q5.category, categories[1]);
     strcpy(q5.question, "A well defined procedure solve a problem");
-    strcpy(q5.answer, "What is an Algorithm?");
+    strcpy(q5.answer, "What is a Algorithm?");
     q5.answered = false;
     questions[4] = q5; 
 
@@ -137,20 +137,31 @@ void display_categories(void)
             printf("       %s       |       %s      |      %s             \n", tempQuestions[i], tempQuestions[i+4], tempQuestions[i+8]);
             printf("--------------------------------------------------\n");
     }
+    printf("\n");
 }
 
 // Displays the question for the category and dollar value
 void display_question(char *category, int value)
 {
-
+    int questionNumber=0;
+    printf("\nYou choose %s for $%d \n", category, value);
+    
+    for (int i=0; i<12; i++){
+        //If the value of category and value match return the question number
+        if (strcmp (questions[i].category, category) == 0 && (questions[i].value == value)){
+            questionNumber = i;
+            //printf("%d", questionNumber);
+        }
+    }
+    printf("Question: %s\n\n", questions[questionNumber].question);
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
 bool valid_answer(char *category, int value, char *answer)
 {
-    // Look into string comparison functions
-    return false;
+	return false;
 }
+
 
 // Returns true if the question has already been answered
 bool already_answered(char *category, int value)

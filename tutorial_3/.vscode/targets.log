@@ -7,10 +7,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-make: *** No rule to make target `all'.  Stop.
- 
 
-# Make data base, printed on Sat Feb 19 18:59:49 2022
+# Make data base, printed on Sat Feb 19 19:48:14 2022
 
 # Variables
 
@@ -24,24 +22,31 @@ VSCODE_LOG_NATIVE = false
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
+ 
+# makefile (from `Makefile', line 7)
+EXE = jeopardy.exe
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/abdulbhutta/Documents/GitHub/sofe3950
+CURDIR := /Users/abdulbhutta/Documents/GitHub/sofe3950/tutorial_3
 # makefile
 SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile
-MAKEFILE_LIST := 
+# makefile (from `Makefile', line 2)
+CFLAGS = -Wall -Wextra -std=c99
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# makefile (from `Makefile', line 5)
+SOURCES = jeopardy.c questions.c players.c
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/6c/6z47j0dj61g66k6z36qdtd5r0000gn/T/vscode-ipc-b01337ad-32e1-4e0c-989b-b87f1ba79187.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/6c/6z47j0dj61g66k6z36qdtd5r0000gn/T/vscode-ipc-b8374012-0893-4af2-944b-632f843b1990.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -61,7 +66,7 @@ CONDA_EXE = /Users/abdulbhutta/opt/anaconda3/bin/conda
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /Users/abdulbhutta/Documents/GitHub/sofe3950
+PWD = /Users/abdulbhutta/Documents/GitHub/sofe3950/tutorial_3
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -92,14 +97,18 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
+# makefile (from `Makefile', line 1)
+CC = gcc
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = abdulbhutta
 # makefile
-.DEFAULT_GOAL := 
+.DEFAULT_GOAL := jeopardy.exe
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile', line 3)
+LFLAGS = 
 # environment
 CONDA_SHLVL = 1
 # default
@@ -136,6 +145,8 @@ MAKEFILES :=
 LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/abdulbhutta/opt/anaconda3/bin/python
+# makefile (from `Makefile', line 4)
+LIBS = 
 # automatic
 ^F = $(notdir $^)
 # default
@@ -144,6 +155,8 @@ SUFFIXES :=
 _CE_M = 
 # environment
 MAKELEVEL := 0
+# makefile (from `Makefile', line 6)
+OBJECTS = $(subst .c,.o,$(SOURCES))
 # environment
 CONDA_PREFIX = /Users/abdulbhutta/opt/anaconda3
 # environment
@@ -153,7 +166,7 @@ _CE_CONDA =
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=69/1024=7%, Rehash=0, Collisions=2/89=2%
+# Load=76/1024=7%, Rehash=0, Collisions=2/104=2%
 
 # Pattern-specific Variable Values
 
@@ -161,22 +174,67 @@ LANG = C
 
 # Directories
 
-# . (device 16777232, inode 4602726): 9 files, no impossibilities.
+# . (device 16777232, inode 4602808): 18 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-# No implicit rules.
+%.o: %.c
+#  commands to execute (from `Makefile', line 14):
+	$(CC) $(CFLAGS) -c $< 
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
 # Not a target:
-all:
+questions.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-19 19:26:22
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+players.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-19 19:47:48
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+all: jeopardy.exe
 #  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+
+.PHONY: clean help
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
+
+cleanup:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 22):
+	rm -f $(OBJECTS) *~
+	
+
+# Not a target:
+jeopardy.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-19 19:41:15
+#  File has been updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -188,23 +246,34 @@ all:
 
 # Not a target:
 Makefile:
-#  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-02-14 19:30:17
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-makefile:
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  File does not exist.
+jeopardy.exe: jeopardy.o questions.o players.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-02-19 19:44:33
 #  File has been updated.
-#  Failed to be updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+#  commands to execute (from `Makefile', line 11):
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ 
+	
+
+help:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 25):
+	@echo "Valid targets:"
+	@echo "  all:    generates all binary files"
+	@echo "  clean:  removes .o and .exe files"
+	
 
 # Not a target:
 .DEFAULT:
@@ -212,29 +281,81 @@ makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-GNUmakefile:
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
+ 
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
 #  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 19):
+	rm -f $(OBJECTS) $(EXE) *~
+	
+
+questions.o: questions.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `questions'
+#  Last modified 2022-02-19 19:26:26
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 14):
+	$(CC) $(CFLAGS) -c $< 
+	
+
+players.o: players.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `players'
+#  Last modified 2022-02-19 19:44:33
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := players.o
+# automatic
+# % := 
+# automatic
+# * := players
+# automatic
+# + := players.c
+# automatic
+# | := 
+# automatic
+# < := players.c
+# automatic
+# ^ := players.c
+# automatic
+# ? := players.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/13=8%
+#  commands to execute (from `Makefile', line 14):
+	$(CC) $(CFLAGS) -c $< 
+	
+
+jeopardy.o: jeopardy.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `jeopardy'
+#  Last modified 2022-02-19 19:44:33
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 14):
+	$(CC) $(CFLAGS) -c $< 
+	
 
 # files hash-table stats:
-# Load=6/1024=1%, Rehash=0, Collisions=0/17=0%
+# Load=15/1024=1%, Rehash=0, Collisions=4/43=9%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 0
-# # of strcache buffers: 0
-# strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
-# strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Feb 19 18:59:49 2022
+# Finished Make data base on Sat Feb 19 19:48:14 2022
 
  
