@@ -54,13 +54,12 @@ int main(int argc, char *argv[])
     bool correct = valid_answer(category,value,token[2]);
     
     if(correct){
-        printf("Correct! You may now choose another question.\n\n");
+        printf("Correct!\n\n");
             //players[i].score += value;
-            //i--;
         }
         
         else{
-            printf("Unfortunately, that is incorrect, or you forgot to say \"What is/Who is\".\n\n");
+            printf("Wrong");
         }
 
     //valid_answer(category, value, answer);
