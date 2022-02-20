@@ -118,9 +118,9 @@ void initialize_game(void)
 // Displays each of the remaining categories and question dollar values that have not been answered
 void display_categories(void)
 {
-    char tempQuestions[12][20];
+    char tempQuestions[NUM_QUESTIONS][20];
     
-    for (int i =0; i<12; i++){
+    for (int i = 0; i < NUM_QUESTIONS; i++){
         if (questions[i].answered == false){
             snprintf(tempQuestions[i], 20, "%d", questions[i].value);
         }
@@ -145,7 +145,7 @@ void display_question(char *category, int value)
 {
     printf("\nYou choose %s for $%d \n", category, value);
     
-    for (int i=0; i<12; i++){
+    for (int i = 0; i < NUM_QUESTIONS; i++){
         //If the value of category and value match return the question number
         if (strcmp (questions[i].category, category) == 0 && (questions[i].value == value)){
             printf("Question: %s\n\n", questions[i].question);
@@ -171,7 +171,7 @@ bool valid_answer(char *category, int value, char *answer)
 bool already_answered(char *category, int value)
 {
     //Go through each category
-    for (int i=0; i<12; i++){
+    for (int i = 0; i < NUM_QUESTIONS; i++){
         //If the category and value matches, return true
         if (strcmp(questions[i].category, category) == 0 && (questions[i].value = value) && (questions[i].answered == true) ){
             return true;
