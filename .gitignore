@@ -1,1 +1,6 @@
+## User settings
+**/xcuserdata/**/*
 .DS_Store
+*.out
+.vscode
+.idea

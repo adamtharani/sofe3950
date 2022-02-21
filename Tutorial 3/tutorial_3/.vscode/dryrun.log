@@ -1,6 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/abdulbhutta/Documents/GitHub/sofe3950/tutorial_3'
-gcc -Wall -Wextra -std=c99 -c players.c 
-gcc -Wall -Wextra -std=c99 jeopardy.o questions.o players.o  -o jeopardy.exe 
-make: Leaving directory `/Users/abdulbhutta/Documents/GitHub/sofe3950/tutorial_3'
- 
