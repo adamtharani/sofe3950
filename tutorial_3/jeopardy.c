@@ -15,17 +15,40 @@
 
 // Put macros or constants here using #define
 #define BUFFER_LEN 256
-#define NUM_PLAYERS 1
+#define NUM_PLAYERS 2
 
 // Put global environment variables here
 
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
-void tokenize(char *input, char **tokens){
-  
+void tokenize(char *input, char **tokens) {
+    char *token;
+
+    token = strtok(input, " ");
+
+    if(token != NULL){
+        if(strcasecmp(token, "who") != 0 && strcasecmp(token, "what") != 0){
+            return;
+        }
+    }
+
+    token = strtok(NULL, " ");
+
+    if(token != NULL){
+        if(strcasecmp(token, "is") != 0){
+            return;
+        }
+    }
+
+    *tokens = strtok(NULL, "\n");
 }
 
+
 // Displays the game results for each player, their name and final score, ranked from first to last place
-void show_results(player *players, int num_players);
+void show_results(player *players) {
+    for(int i = 1; i <= NUM_PLAYERS; i++){
+        printf("Name: %s    Score: %d\n", players[i].name, players[i].score);
+    }
+}
 
 
 int main() //(int argc, char *argv[])
@@ -40,60 +63,58 @@ int main() //(int argc, char *argv[])
     printf("\nWelcome to Jeopardy! (Maximum of 4 players)\n\n");
     initialize_game();
 
-    // Prompt for players names
-    for (int count = 0; count < NUM_PLAYERS; count++) {
-        printf("Please enter the name for player %i: ", count+1);
-        scanf("%s", (char *) &players[count].name);
-        printf("\nSuccessfully stored %s as player %i\n\n", players[count].name, count+1);
+    for (int count = 1; count <= NUM_PLAYERS; count++) {
+
+        char name[256];
+        printf("Please enter the name for player %i:\n", count);
+        scanf("%s", name);
+        player p;
+        strcpy(p.name, name);
+        p.score = 0;
+        players[count] = p;
+        printf("Successfully stored %s as player %i\n\n", name, count);
+   }
+    int playerCounter = 1;
+    int questions_remaining = sizeof(questions);
+//     Perform an infinite loop getting command input from users until game ends
+    while (fgets(buffer, BUFFER_LEN, stdin) != NULL) {
+        while (questions_remaining >= 0)
+        {
+
+            player currentPlayer = players[playerCounter];
+            printf("The current player is %s\n\n", currentPlayer.name);
+            char categorySelection[BUFFER_LEN];
+            int valueSelection;
+            char answer[BUFFER_LEN];
+            display_categories();
+            printf("Please pick a category: \n");
+            scanf("%s", categorySelection);
+            printf("Please pick a value: \n");
+            scanf("%i", &valueSelection);
+            display_question(categorySelection, valueSelection);
+            fflush(stdin);
+            printf("Please enter your answer: \n");
+            scanf("%[^\n]s", answer);
+            char *tokenizedAnswer;
+            tokenize(answer, &tokenizedAnswer);
+            if (valid_answer(categorySelection, valueSelection, tokenizedAnswer)) {
+                printf("\nYou answered right\n");
+                update_score(players, NUM_PLAYERS, currentPlayer.name, currentPlayer.score + valueSelection);
+                show_results(players);
+            }
+            else {
+                playerCounter++;
+                display_answer(categorySelection, valueSelection);
+            }
+
+            mark_question_answered(categorySelection, valueSelection);
+            questions_remaining--;
+
+        }
+//        ordered_by_points(players, NUM_PLAYERS);
     }
-
-    // Perform an infinite loop getting command input from users until game ends
-    while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
-    {
-        char token[4][BUFFER_LEN] = {{0}};
-        int value = 0;
-        char userInput[BUFFER_LEN] = {0};
-        char *category = malloc(sizeof(char) * 256);
-
-        display_categories();
-
-        category = "algorithms";
-        value = 400;
-
-        /* DO NOT DELETE!
-        printf("\nEnter category: ");
-        scanf("%s", category);
-
-        printf("Enter value: ");
-        scanf("%d", &value);
-        */
-
-     
-        display_question(category, value);
-        update_score(players, NUM_PLAYERS, "Abdul", value);
-        questions[7].answered = true;
-
-        bool ans;
-        ans = already_answered(category, value);
-
-        //if ()
-            printf("%d\n", ans);
-
-        printf("name: %s\n", players[0].name);
-        printf("score: %d\n", players[0].score);
-
-
-
-       
-
-        // Call functions from the questions and players source files
-
-        // Execute the game until all questions are answered
-
-
-        // Display the final results and exit
-        //free(category);
-    }
-    return EXIT_SUCCESS;
+        return EXIT_SUCCESS;
 }
+
+
 
