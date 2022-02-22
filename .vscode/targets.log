@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
  
 
-# Make data base, printed on Sat Feb 19 18:59:49 2022
+# Make data base, printed on Tue Feb 22 04:02:57 2022
 
 # Variables
 
@@ -19,6 +19,7 @@ make: *** No rule to make target `all'.  Stop.
 # automatic
 ?F = $(notdir $?)
 # environment
+ 
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
@@ -41,7 +42,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/6c/6z47j0dj61g66k6z36qdtd5r0000gn/T/vscode-ipc-b01337ad-32e1-4e0c-989b-b87f1ba79187.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/6c/6z47j0dj61g66k6z36qdtd5r0000gn/T/vscode-ipc-def4c976-b23b-47d5-b10b-4f6e384fbabe.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -147,7 +148,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/abdulbhutta/opt/anaconda3
 # environment
-VSCODE_PID = 820
+VSCODE_PID = 83819
 # environment
 _CE_CONDA = 
 # environment
@@ -161,9 +162,9 @@ LANG = C
 
 # Directories
 
-# . (device 16777232, inode 4602726): 9 files, no impossibilities.
+# . (device 16777232, inode 4602726): 11 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -190,6 +191,7 @@ all:
 Makefile:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
+ 
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
@@ -235,6 +237,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Feb 19 18:59:49 2022
+# Finished Make data base on Tue Feb 22 04:02:57 2022
 
  
