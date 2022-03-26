@@ -21,7 +21,7 @@ struct factorialInput {
     int number;
     int index ;
 };
-int factorial_Custom(struct factorialInput input);
+void factorial(struct factorialInput input);
 
 
 int main(int argc, const char * argv[]) {
@@ -86,7 +86,7 @@ void question3(void) {
         input.index = counter;
         input.number = moving_sum[counter];
         
-        printf("%d\n", factorial_Custom(input));
+        factorial(input);
     }
     
 }
@@ -123,10 +123,11 @@ void readFile(char *fileName) {
     }
 }
 
-int factorial_Custom(struct factorialInput input) {
+void factorial(struct factorialInput input) {
     int factorial_value = 1;
     for (int counter = 1; counter <= input.number; counter++) {
         factorial_value *= counter;
     }
-    return factorial_value;
+    printf("The factorial of %d is %d\n", input.number , factorial_value);
 }
+
