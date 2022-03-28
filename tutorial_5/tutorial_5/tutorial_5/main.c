@@ -15,7 +15,7 @@
 void question1(void);
 void question2(void);
 void question3(void);
-void writeFile(char *body, char *fileName);
+void writeFile(char *body, char *fileName, char *writeMode);
 void readFile(char *fileName);
 struct factorialInput {
     int number;
@@ -25,7 +25,9 @@ void factorial(struct factorialInput input);
 
 
 int main(int argc, const char * argv[]) {
-    question3();
+//    question1();
+//    question2();
+//    question3();
     return 0;
 }
 
@@ -50,8 +52,8 @@ void question1(void) {
             readFile("child2.txt");
         } else {
             /* Parent Code */
-            writeFile("child 1", "child1.txt");
-            writeFile("child 2", "child2.txt");
+            writeFile("child 1", "child1.txt", "w");
+            writeFile("child 2", "child2.txt", "w");
         }
     }
 }
@@ -91,11 +93,11 @@ void question3(void) {
     
 }
 
-void writeFile(char *body, char *fileName) {
+void writeFile(char *body, char *fileName, char *fileMode) {
     FILE *fp;
     
-    // Open file to write the text in
-    fp = fopen(fileName, "w");
+    // Open file to in given mode the text in
+    fp = fopen(fileName, fileMode);
     if (fp == NULL) {
         printf("Cannot open file \n");
         exit(0);
