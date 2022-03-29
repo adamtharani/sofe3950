@@ -48,9 +48,9 @@ void tokenize(char *input, char **tokens)
 }
 
 // Displays the game results for each player, their name and final score, ranked from first to last place
-void show_results(player *players)
+void show_results(player *players, int numbersOfPlayers)
 {
-    for (int i = 1; i <= NUM_PLAYERS; i++)
+    for (int i = 1; i <= numbersOfPlayers; i++)
     {
         printf("Name: %s    Score: %d\n", players[i].name, players[i].score);
     }
@@ -131,7 +131,7 @@ int main() //(int argc, char *argv[])
                 {
                     printf("\nYou answered right\n");
                     update_score(players, numberOfPlayersInputed, currentPlayer.name, currentPlayer.score + valueSelection);
-                    show_results(players);
+                    show_results(players, numberOfPlayersInputed);
                 }
                 else
                 {
