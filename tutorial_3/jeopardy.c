@@ -20,21 +20,26 @@
 // Put global environment variables here
 
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
-void tokenize(char *input, char **tokens) {
+void tokenize(char *input, char **tokens)
+{
     char *token;
 
     token = strtok(input, " ");
 
-    if(token != NULL){
-        if(strcasecmp(token, "who") != 0 && strcasecmp(token, "what") != 0){
+    if (token != NULL)
+    {
+        if (strcasecmp(token, "who") != 0 && strcasecmp(token, "what") != 0)
+        {
             return;
         }
     }
 
     token = strtok(NULL, " ");
 
-    if(token != NULL){
-        if(strcasecmp(token, "is") != 0){
+    if (token != NULL)
+    {
+        if (strcasecmp(token, "is") != 0)
+        {
             return;
         }
     }
@@ -42,28 +47,29 @@ void tokenize(char *input, char **tokens) {
     *tokens = strtok(NULL, "\n");
 }
 
-
 // Displays the game results for each player, their name and final score, ranked from first to last place
-void show_results(player *players) {
-    for(int i = 1; i <= NUM_PLAYERS; i++){
+void show_results(player *players)
+{
+    for (int i = 1; i <= NUM_PLAYERS; i++)
+    {
         printf("Name: %s    Score: %d\n", players[i].name, players[i].score);
     }
 }
-
 
 int main() //(int argc, char *argv[])
 {
     // An array of 4 players, may need to be a pointer if you want it set dynamically
     player players[NUM_PLAYERS];
-    
+
     // Input buffer and and commands
-    char buffer[BUFFER_LEN] = { 0 };
+    char buffer[BUFFER_LEN] = {0};
 
     // Display the game introduction and initialize the questions
-    printf("\nWelcome to Jeopardy! (Maximum of 4 players)\n\n");
+    printf("\nWelcome to Jeopardy! (Maximum of %d players)\n\n", NUM_PLAYERS);
     initialize_game();
 
-    for (int count = 1; count <= NUM_PLAYERS; count++) {
+    for (int count = 1; count <= NUM_PLAYERS; count++)
+    {
 
         char name[256];
         printf("Please enter the name for player %i:\n", count);
@@ -73,48 +79,67 @@ int main() //(int argc, char *argv[])
         p.score = 0;
         players[count] = p;
         printf("Successfully stored %s as player %i\n\n", name, count);
-   }
-    int playerCounter = 1;
+    }
+    int playerCounter;
     int questions_remaining = sizeof(questions);
-//     Perform an infinite loop getting command input from users until game ends
-    while (fgets(buffer, BUFFER_LEN, stdin) != NULL) {
+    
+    //     Perform an infinite loop getting command input from users until game ends
+    while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
+    {
         while (questions_remaining >= 0)
         {
+            char playersName[BUFFER_LEN];
+            bool playerMatched = false;
+            printf("Please enter your name: ");
+            scanf("%s", playersName);
 
-            player currentPlayer = players[playerCounter];
-            printf("The current player is %s\n\n", currentPlayer.name);
-            char categorySelection[BUFFER_LEN];
-            int valueSelection;
-            char answer[BUFFER_LEN];
-            display_categories();
-            printf("Please pick a category: \n");
-            scanf("%s", categorySelection);
-            printf("Please pick a value: \n");
-            scanf("%i", &valueSelection);
-            display_question(categorySelection, valueSelection);
-            fflush(stdin);
-            printf("Please enter your answer: \n");
-            scanf("%[^\n]s", answer);
-            char *tokenizedAnswer;
-            tokenize(answer, &tokenizedAnswer);
-            if (valid_answer(categorySelection, valueSelection, tokenizedAnswer)) {
-                printf("\nYou answered right\n");
-                update_score(players, NUM_PLAYERS, currentPlayer.name, currentPlayer.score + valueSelection);
-                show_results(players);
-            }
-            else {
-                playerCounter++;
-                display_answer(categorySelection, valueSelection);
+            for (int counter = 1; counter <= NUM_PLAYERS; counter++)
+            {
+                if (strcmp(players[counter].name, playersName) == false )
+                {
+                    playerMatched = true;
+                    playerCounter = counter;
+                }
             }
 
-            mark_question_answered(categorySelection, valueSelection);
-            questions_remaining--;
+            if (playerMatched == false)
+            {
+                printf("You have entered an invalid players name\n");
+            }
+            else
+            {
+                player currentPlayer = players[playerCounter];
+                printf("The current player is %s\n\n", currentPlayer.name);
+                char categorySelection[BUFFER_LEN];
+                int valueSelection;
+                char answer[BUFFER_LEN];
+                display_categories();
+                printf("Please pick a category: \n");
+                scanf("%s", categorySelection);
+                printf("Please pick a value: \n");
+                scanf("%i", &valueSelection);
+                display_question(categorySelection, valueSelection);
+                fflush(stdin);
+                printf("Please enter your answer: \n");
+                scanf("%[^\n]s", answer);
+                char *tokenizedAnswer;
+                tokenize(answer, &tokenizedAnswer);
+                if (valid_answer(categorySelection, valueSelection, tokenizedAnswer))
+                {
+                    printf("\nYou answered right\n");
+                    update_score(players, NUM_PLAYERS, currentPlayer.name, currentPlayer.score + valueSelection);
+                    show_results(players);
+                }
+                else
+                {
+                    display_answer(categorySelection, valueSelection);
+                }
 
+                mark_question_answered(categorySelection, valueSelection);
+                questions_remaining--;
+            }
         }
-//        ordered_by_points(players, NUM_PLAYERS);
+        //        ordered_by_points(players, NUM_PLAYERS);
     }
-        return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
-
-
-

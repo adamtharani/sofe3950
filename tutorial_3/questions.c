@@ -198,7 +198,5 @@ void display_answer(char *category, int value)
             printf("\nYou answered wrong! The correct answer is: %s\n", questions[i].answer);
             return;
         }
-        printf("hello world");
     }
-    printf("hello world");
 }
