@@ -15,7 +15,7 @@
 
 // Put macros or constants here using #define
 #define BUFFER_LEN 256
-#define NUM_PLAYERS 2
+#define NUM_PLAYERS 4
 
 // Put global environment variables here
 
@@ -67,8 +67,11 @@ int main() //(int argc, char *argv[])
     // Display the game introduction and initialize the questions
     printf("\nWelcome to Jeopardy! (Maximum of %d players)\n\n", NUM_PLAYERS);
     initialize_game();
+    int numberOfPlayersInputed;
+    printf("Please enter the amount of players: ");
+    scanf("%d", &numberOfPlayersInputed);
 
-    for (int count = 1; count <= NUM_PLAYERS; count++)
+    for (int count = 1; count <= numberOfPlayersInputed; count++)
     {
 
         char name[256];
@@ -93,7 +96,7 @@ int main() //(int argc, char *argv[])
             printf("Please enter your name: ");
             scanf("%s", playersName);
 
-            for (int counter = 1; counter <= NUM_PLAYERS; counter++)
+            for (int counter = 1; counter <= numberOfPlayersInputed; counter++)
             {
                 if (strcmp(players[counter].name, playersName) == false )
                 {
@@ -127,7 +130,7 @@ int main() //(int argc, char *argv[])
                 if (valid_answer(categorySelection, valueSelection, tokenizedAnswer))
                 {
                     printf("\nYou answered right\n");
-                    update_score(players, NUM_PLAYERS, currentPlayer.name, currentPlayer.score + valueSelection);
+                    update_score(players, numberOfPlayersInputed, currentPlayer.name, currentPlayer.score + valueSelection);
                     show_results(players);
                 }
                 else
