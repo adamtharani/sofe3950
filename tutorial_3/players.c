@@ -52,7 +52,7 @@ void ordered_by_points(player *players, int num_players)
     }
 
     printf("\n=====SCOREBOARD======\n");
-    printf("WINNER: %s: %d\n", players[max_score_player].name, players[max_score_player].score);
+    printf("%s: %d\n - WINNER", players[max_score_player].name, players[max_score_player].score);
     for (int counter = 1; counter <= num_players; counter++)
     {
         if (counter != max_score_player) {
