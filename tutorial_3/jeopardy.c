@@ -17,6 +17,8 @@
 #define BUFFER_LEN 256
 #define NUM_PLAYERS 4
 
+extern bool displayedScore = false;
+
 // Put global environment variables here
 
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
@@ -84,12 +86,12 @@ int main() //(int argc, char *argv[])
         printf("Successfully stored %s as player %i\n\n", name, count);
     }
     int playerCounter;
-    int questions_remaining = sizeof(questions);
+    int questions_remaining = NUM_QUESTIONS;
     
     //     Perform an infinite loop getting command input from users until game ends
     while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
     {
-        while (questions_remaining >= 0)
+        while (questions_remaining > 10)
         {
             char playersName[BUFFER_LEN];
             bool playerMatched = false;
@@ -142,7 +144,11 @@ int main() //(int argc, char *argv[])
                 questions_remaining--;
             }
         }
-        //        ordered_by_points(players, NUM_PLAYERS);
+        if (displayedScore == false) {
+            ordered_by_points(players, numberOfPlayersInputed);
+            displayedScore = true;
+        }
+        
     }
     return EXIT_SUCCESS;
 }
